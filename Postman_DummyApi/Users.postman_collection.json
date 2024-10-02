@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "3e87b36d-42ed-443a-be39-1d6a58bf520c",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36862236"
+	},
+	"item": [
+		{
+			"name": "Получение списка пользователей",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "668f3d114a878aab9984d8b6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://dummyapi.io/data/v1/user",
+					"protocol": "https",
+					"host": [
+						"dummyapi",
+						"io"
+					],
+					"path": [
+						"data",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание пользователя",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "668f3d114a878aab9984d8b6",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\": \"mrs\",\r\n\"firstName\": \"Donna\",\r\n\"lastName\": \"Mozer\",\r\n\"gender\": \"female\",\r\n\"email\": \"Godable@gmail.com\",\r\n\"dateOfBirth\":  \"1/1/1999\",\r\n\"phone\": \"+7(989)111-55-11\",\r\n\"picture\": \"http://myfoto.com\",\r\n\"location\": \r\n          {\r\n          \"street\": \"Pl. Lenina\",\r\n          \"city\": \"Moskow\",\r\n          \"state\": \"Moskow\",\r\n          \"country\": \"Russia\",\r\n          \"timezone\": \"+7:00\"\r\n           }\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dummyapi.io/data/v1/user/create",
+					"protocol": "https",
+					"host": [
+						"dummyapi",
+						"io"
+					],
+					"path": [
+						"data",
+						"v1",
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение пользователя",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "668f3d114a878aab9984d8b6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://dummyapi.io/data/v1/user/66d53387ea6a535dde87b057",
+					"protocol": "https",
+					"host": [
+						"dummyapi",
+						"io"
+					],
+					"path": [
+						"data",
+						"v1",
+						"user",
+						"66d53387ea6a535dde87b057"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Обновление пользователя",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "app-id",
+						"value": "668f3d114a878aab9984d8b6",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\": \"mrs\",\r\n\"firstName\": \"Donna\",\r\n\"lastName\": \"Smith\",\r\n\"gender\": \"female\",\r\n\"email\": \"Godable@gmail.com\",\r\n\"dateOfBirth\":  \"1/1/1999\",\r\n\"phone\": \"+7(989)111-55-11\",\r\n\"picture\": \"http://myfoto.com\",\r\n\"location\": \r\n          {\r\n          \"street\": \"Pl. Lenina\",\r\n          \"city\": \"Moskow\",\r\n          \"state\": \"Moskow\",\r\n          \"country\": \"Russia\",\r\n          \"timezone\": \"+7:00\"\r\n           }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dummyapi.io/data/v1/user/66d53387ea6a535dde87b057",
+					"protocol": "https",
+					"host": [
+						"dummyapi",
+						"io"
+					],
+					"path": [
+						"data",
+						"v1",
+						"user",
+						"66d53387ea6a535dde87b057"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление пользователя",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "App-id",
+						"value": "668f3d114a878aab9984d8b6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://dummyapi.io/data/v1/user/66d53387ea6a535dde87b057",
+					"protocol": "https",
+					"host": [
+						"dummyapi",
+						"io"
+					],
+					"path": [
+						"data",
+						"v1",
+						"user",
+						"66d53387ea6a535dde87b057"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
