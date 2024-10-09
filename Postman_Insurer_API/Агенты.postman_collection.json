@@ -1,0 +1,1105 @@
+{
+	"info": {
+		"_postman_id": "00d10df1-2e70-447e-b394-c189076d0af5",
+		"name": "Агенты",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36862236"
+	},
+	"item": [
+		{
+			"name": "Аутентификация",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"Token\", jsonData.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"qa@qa.qa\",\r\n  \"password\": \"111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/users/obtain-token",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"users",
+						"obtain-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание водителя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData)\r",
+							"pm.environment.set(\"Driver_id\", jsonData.id);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Дмитрий\",\r\n    \"last_name\": \"Тарасов\",\r\n    \"patronymic\": \"Сергеевич\",\r\n    \"birth_date\": \"1987-01-13\",\r\n    \"gender\": \"M\",\r\n    \"driving_experience_started\": \"2006-08-08\",\r\n    \"driver_licenses\": [\r\n        {\r\n            \"credential_type\": \"DRIVER_LICENSE\",\r\n            \"number\": \"013837\",\r\n            \"series\": \"47СТ\",\r\n            \"issue_date\": \"2006-08-08\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/insured_objects/drivers",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"insured_objects",
+						"drivers"
+					]
+				},
+				"description": "Generated from cURL: curl --location -g '{{http_schema}}://{{host}}/{{api_version}}/insured_objects/drivers' \\\r\n--header 'Accept: application/json' \\\r\n--header 'Content-Type: application/json' \\\r\n--header 'Authorization: Token {{token}}' \\\r\n--data '{\r\n   \"first_name\": \"Дмитрий\",\r\n   \"last_name\": \"Тарасов\",\r\n   \"patronymic\": \"Сергеевич\",\r\n   \"birth_date\": \"1987-01-13\",\r\n   \"gender\":\"M\",\r\n   \"driving_experience_started\": \"2006-08-08\",\r\n   \"driver_licenses\": [{\r\n   \t\t\"credential_type\": \"DRIVER_LICENSE\",\r\n\t\t\"number\": \"013837\",\r\n\t\t\"series\": \"47СТ\",\r\n\t\t\"issue_date\": \"2006-08-08\"\r\n\t}]\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Создание собственника",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData),\r",
+							"pm.environment.set(\"Owner_id\",jsonData.person);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"last_name\": \"Тарасов\",\r\n\t\"first_name\": \"Дмитрий\",\r\n\t\"patronymic\": \"Сергеевич\",\r\n\t\"birth_date\": \"1987-01-13\",\r\n\t\"gender\": \"M\",\r\n\t\"credential\": [{\r\n\t  \t\"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\r\n\t\t\"issue_date\": \"2017-03-08\",\r\n\t\t\"issue_point\": \"УФМС\",\r\n\t\t\"issue_point_code\": \"123-456\",\r\n\t\t\"number\": \"123123\",\r\n\t\t\"series\": \"1111\"\r\n\t}],\r\n\t\"address\": [{\r\n\t\t\"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 8 к 2\",\r\n\t\t\"address_type\": \"LEGAL_ADDRESS\"\r\n\t},\r\n\t{\r\n\t\t\"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 8 к 1\",\r\n\t\t\"address_type\": \"ACTUAL_ADDRESS\"\r\n\t}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/insured_objects/owners/natural_persons",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"insured_objects",
+						"owners",
+						"natural_persons"
+					]
+				},
+				"description": "Generated from cURL: curl --location -g '{{http_schema}}://{{host}}/{{api_version}}/insured_objects/owners/natural_persons' \\\r\n--header 'Content-Type: application/json' \\\r\n--header 'Accept: application/json, text/plain, */*' \\\r\n--header 'Authorization: Token {{token}}' \\\r\n--data '{\r\n\t\"last_name\": \"Тарасов\",\r\n\t\"first_name\": \"Дмитрий\",\r\n\t\"patronymic\": \"Сергеевич\",\r\n\t\"birth_date\": \"1987-01-13\",\r\n\t\"gender\": \"M\",\r\n\t\"credential\": [{\r\n\t  \t\"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\r\n\t\t\"issue_date\": \"2017-03-08\",\r\n\t\t\"issue_point\": \"УФМС\",\r\n\t\t\"issue_point_code\": \"123-456\",\r\n\t\t\"number\": \"123123\",\r\n\t\t\"series\": \"1111\"\r\n\t}],\r\n\t\"address\": [{\r\n\t\t\"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 8 к 2\",\r\n\t\t\"address_type\": \"LEGAL_ADDRESS\"\r\n\t},\r\n\t{\r\n\t\t\"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 8 к 1\",\r\n\t\t\"address_type\": \"ACTUAL_ADDRESS\"\r\n\t}]\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Создание страхователя Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData)\r",
+							"pm.environment.set(\"Insurants_id\", jsonData.person);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"last_name\": \"Некрасов\",\r\n    \"first_name\": \"Дмитрий\",\r\n    \"patronymic\": \"Сергеевич\",\r\n    \"birth_date\": \"1987-01-13\",\r\n    \"credential\": [\r\n        {\r\n            \"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\r\n            \"issue_date\": \"2017-03-08\",\r\n            \"issue_point\": \"УФМС\",\r\n            \"issue_point_code\": \"123-456\",\r\n            \"number\": \"123123\",\r\n            \"series\": \"1111\"\r\n        }\r\n    ],\r\n    \"address\": [\r\n        {\r\n            \"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 8 к 2\",\r\n            \"address_type\": \"LEGAL_ADDRESS\"\r\n        },\r\n        {\r\n            \"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 8 к 1\",\r\n            \"address_type\": \"ACTUAL_ADDRESS\"\r\n        }\r\n    ],\r\n    \"contact\": [\r\n        {\r\n            \"contact_type\": \"EMAIL\",\r\n            \"data\": \"Drah@yahoo.com\",\r\n            \"comment\": null\r\n        },\r\n        {\r\n            \"contact_type\": \"PHONE\",\r\n            \"data\": \"+7 (123) 456-78-90\",\r\n            \"comment\": null\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/insured_objects/insurants/natural_persons",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"insured_objects",
+						"insurants",
+						"natural_persons"
+					]
+				},
+				"description": "Generated from cURL: curl --location -g '{{http_schema}}://{{host}}/{{api_version}}/insured_objects/insurants/natural_persons' \\\r\n--header 'Content-Type: application/json' \\\r\n--header 'Accept: application/json, text/plain, */*' \\\r\n--header 'Authorization: Token {{token}}' \\\r\n--data '{\r\n\t\"last_name\": \"Тарасов\",\r\n\t\"first_name\": \"Дмитрий\",\r\n\t\"patronymic\": \"Сергеевич\",\r\n\t\"birth_date\": \"1987-01-13\",\r\n\t\"credential\": [{\r\n\t  \t\"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\r\n\t\t\"issue_date\": \"2017-03-08\",\r\n\t\t\"issue_point\": \"УФМС\",\r\n\t\t\"issue_point_code\": \"123-456\",\r\n\t\t\"number\": \"123123\",\r\n\t\t\"series\": \"1111\"\r\n\t}],\r\n\t\"address\": [{\r\n\t\t\"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 8 к 2\",\r\n\t\t\"address_type\": \"LEGAL_ADDRESS\"\r\n\t},\r\n\t{\r\n\t\t\"address_query\": \"г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 8 к 1\",\r\n\t\t\"address_type\": \"ACTUAL_ADDRESS\"\r\n\t}]\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Создание автомобиля",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"pm.environment.set(\"Car_id\", jsonData.id);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"car_model_id\": \"864026180\",\r\n  \"engine_power\": 211, \r\n  \"chassis_number\": null,\r\n  \"car_body_number\": null,\r\n  \"vin_number\": \"WAUZZZ8T4BA037241\",\r\n  \"number_plate\": \"Р904МХ178\",\r\n  \"manufacturing_year\": 2010,\r\n  \"max_mass\": null,\r\n  \"has_trailer\": false,\r\n  \"credential\": [{\r\n  \t  \"credential_type\": \"VEHICLE_REGISTRATION\",\r\n      \"issue_date\": \"2010-11-01\",\r\n      \"number\": \"267461\",\r\n      \"series\": \"78УН\"\r\n  },\r\n  {\r\n      \"credential_type\": \"DIAGNOSTIC_CHART\",\r\n      \"number\": \"021960081809862\",\r\n      \"series\": \"series\",\r\n      \"expiration_date\": \"2020-06-17\"\r\n    }]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/insured_objects/cars",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"insured_objects",
+						"cars"
+					]
+				},
+				"description": "Generated from cURL: curl --location -g '{{http_schema}}://{{host}}/{{api_version}}/insured_objects/cars' \\\r\n--header 'Content-Type: application/json' \\\r\n--header 'Accept: application/json, text/plain, */*' \\\r\n--header 'Authorization: Token {{token}}' \\\r\n--data '{\r\n  \"car_model_id\": {{car_model}},\r\n  \"engine_power\": 211, \r\n  \"chassis_number\": null,\r\n  \"car_body_number\": null,\r\n  \"vin_number\": \"WAUZZZ8T4BA037241\",\r\n  \"number_plate\": \"Р904МХ178\",\r\n  \"manufacturing_year\": 2010,\r\n  \"max_mass\": null,\r\n  \"has_trailer\": false,\r\n  \"credential\": [{\r\n  \t  \"credential_type\": \"VEHICLE_REGISTRATION\",\r\n      \"issue_date\": \"2010-11-01\",\r\n      \"number\": \"267461\",\r\n      \"series\": \"78УН\"\r\n  },\r\n  {\r\n      \"credential_type\": \"DIAGNOSTIC_CHART\",\r\n      \"number\": \"021960081809862\",\r\n      \"series\": \"series\",\r\n      \"expiration_date\": \"2020-06-17\"\r\n    }]\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Объединение объектов в одну сущность",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"pm.environment.set(\"Insured_object_id\", jsonData.id)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"drivers\": [\r\n        \"{{Driver_id}}\"\r\n    ],\r\n    \"owner\": \"{{Owner_id}}\",\r\n    \"car\": \"{{Car_id}}\",\r\n    \"insurant\": \"{{Insurants_id}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/insured_objects/",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"insured_objects",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl --location -g '{{http_schema}}://{{host}}/{{api_version}}/insured_objects' \\\r\n--header 'Content-Type: application/json;charset=UTF-8' \\\r\n--header 'Accept: application/json, text/plain, */*' \\\r\n--header 'Authorization: Token {{token}}' \\\r\n--data '{\r\n  \"drivers\": [\r\n    {{driver_id}}\r\n  ],\r\n  \"owner\": {{owner_id}},\r\n  \"car\": {{car_id}}\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Создание договора",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"var agreement_id = jsonData.id;\r",
+							"pm.environment.set(\"agreement_id\", agreement_id);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"valid_from\": \"2024-10-30\",\r\n    \"valid_to\": \"2025-06-29\",\r\n    \"engine_power\": 95,\r\n    \"is_car_without_registration\": false,\r\n    \"car_type\": \"B\",\r\n    \"target_of_using\": 11,\r\n    \"has_car_trailer\": false,\r\n    \"insurance_period\": 8,\r\n    \"owner_registration\": {\r\n        \"address_query\": \"г Санкт-Петербург\",\r\n        \"region_kladr_id\": \"7800000000000\"\r\n    },\r\n    \"periods\": [\r\n        {\r\n            \"start_date\": \"2024-10-30\",\r\n            \"end_date\": \"2025-09-29\"\r\n        }\r\n    ],\r\n    \"drivers_ids\": [\r\n        \"{{Driver_id}}\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/agreements/calculations",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"agreements",
+						"calculations"
+					]
+				},
+				"description": "Generated from cURL: curl --location -g '{{http_schema}}://{{host}}/{{api_version}}/agreements/calculations' \\\r\n--header 'Content-Type: application/json' \\\r\n--header 'Accept: application/json, text/plain, */*' \\\r\n--header 'Authorization: Token {{token}}' \\\r\n--data '{\r\n\t\"valid_from\": \"2019-06-30\",\r\n\t\"valid_to\": \"2020-06-29\",\r\n\t\"engine_power\": 95,\r\n\t\"is_car_without_registration\": false,\r\n\t\"car_type\": \"B\",\r\n\t\"target_of_using\": 11,\r\n\t\"has_car_trailer\": false,\r\n\t\"insurance_period\": 8,\r\n\t\"owner_registration\": {\r\n\t\t\"address_query\": \"г Санкт-Петербург\",\r\n\t\t\"region_kladr_id\": \"7800000000000\"\r\n\r\n\t},\r\n\t\"periods\": [\r\n        {\r\n            \"start_date\": \"2019-06-30\",\r\n            \"end_date\": \"2019-09-29\"\r\n        }\r\n    ],\r\n\t\"drivers_ids\":[\"{{driver_id}}\"]\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Обновление договора",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"pm.environment.set(\"agreement_id\", jsonData.id);\r",
+							"var agreement_id = jsonData.id;\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"insured_object\": \"{{Insured_object_id}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/agreements/{{agreement_id}}",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"agreements",
+						"{{agreement_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl --location -g --request PATCH '{{http_schema}}://{{host}}/{{api_version}}/agreements/{{agreement_id}}' \\\r\n--header 'Content-Type: application/json;charset=UTF-8' \\\r\n--header 'Accept: application/json, text/plain, */*' \\\r\n--header 'Authorization: Token {{token}}' \\\r\n--data '{\r\n  \"insured_object\": \"{{insured_object_id}}\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Полный расчет",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					}
+				],
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/agreements/{{agreement_id}}/results/TEST_COMPANY",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"TEST_COMPANY"
+					]
+				},
+				"description": "Generated from cURL: curl --location -g --request POST '{{http_schema}}://{{host}}/{{api_version}}/agreements/{{agreement_id}}/results/{{ins_company_code}}' \\\r\n--header 'Content-Type: application/json;charset=UTF-8' \\\r\n--header 'Accept: application/json, text/plain, */*' \\\r\n--header 'Authorization: Token {{token}}' \\\r\n--data ''"
+			},
+			"response": []
+		},
+		{
+			"name": "рассчитать",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"has_car_trailer\": false,\r\n    \"car_type\": \"B\",\r\n    \"drivers_ids\": [],\r\n    \"engine_power\": 211,\r\n    \"insurance_period\": 8,\r\n    \"insured_object\": \"{{Insured_object_id}}\",\r\n    \"owner_registration\": {\r\n        \"address_query\": \"198412, г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 8 к 2\",\r\n        \"area\": null,\r\n        \"area_fias_id\": null,\r\n        \"area_kladr_id\": null,\r\n        \"area_with_type\": null,\r\n        \"block\": \"2\",\r\n        \"block_type\": \"к\",\r\n        \"city\": \"Ломоносов\",\r\n        \"city_district\": null,\r\n        \"city_district_fias_id\": null,\r\n        \"city_district_kladr_id\": null,\r\n        \"city_district_type\": null,\r\n        \"city_district_type_full\": null,\r\n        \"city_district_with_type\": null,\r\n        \"city_fias_id\": \"3c2827f3-63f3-4692-8c74-c1318ee524fd\",\r\n        \"city_kladr_id\": \"7800000600000\",\r\n        \"city_with_type\": \"г Ломоносов\",\r\n        \"country\": \"Россия\",\r\n        \"fias_code\": \"7800000600000000117\",\r\n        \"fias_id\": \"2e2b9755-8b98-4446-9b14-f88227866768\",\r\n        \"fias_level\": \"7\",\r\n        \"flat\": null,\r\n        \"flat_type\": null,\r\n        \"house\": \"8\",\r\n        \"house_fias_id\": \"8dfcd9cc-681c-4f81-8cff-93d20d4e1655\",\r\n        \"house_kladr_id\": \"7800000600001170025\",\r\n        \"house_type\": \"д\",\r\n        \"kladr_id\": \"78000006000011700\",\r\n        \"okato\": \"40290502000\",\r\n        \"postal_code\": \"198412\",\r\n        \"region\": \"Санкт-Петербург\",\r\n        \"region_fias_id\": \"c2deb16a-0330-4f05-821f-1d09c93331e6\",\r\n        \"region_kladr_id\": \"7800000000000\",\r\n        \"region_with_type\": \"г Санкт-Петербург\",\r\n        \"settlement\": null,\r\n        \"settlement_fias_id\": null,\r\n        \"settlement_kladr_id\": null,\r\n        \"settlement_with_type\": null,\r\n        \"street\": \"Швейцарская\",\r\n        \"street_fias_id\": \"2e2b9755-8b98-4446-9b14-f88227866768\",\r\n        \"street_kladr_id\": \"78000006000011700\",\r\n        \"street_with_type\": \"ул Швейцарская\",\r\n        \"address_type\": \"LEGAL_ADDRESS\",\r\n        \"data\": {\r\n            \"address_query\": \"198412, Российская Федерация, г Санкт-Петербург, г Ломоносов, ул Швейцарская, д. 8, к. 2\",\r\n            \"area\": null,\r\n            \"area_fias_id\": null,\r\n            \"area_kladr_id\": null,\r\n            \"area_with_type\": null,\r\n            \"block\": \"2\",\r\n            \"block_type\": \"к\",\r\n            \"city\": \"Ломоносов\",\r\n            \"city_district\": null,\r\n            \"city_district_fias_id\": null,\r\n            \"city_district_kladr_id\": null,\r\n            \"city_district_type\": null,\r\n            \"city_district_type_full\": null,\r\n            \"city_district_with_type\": null,\r\n            \"city_fias_id\": \"3c2827f3-63f3-4692-8c74-c1318ee524fd\",\r\n            \"city_kladr_id\": \"7800000600000\",\r\n            \"city_with_type\": \"г Ломоносов\",\r\n            \"country\": \"Россия\",\r\n            \"fias_code\": \"7800000600000000117\",\r\n            \"fias_id\": \"2e2b9755-8b98-4446-9b14-f88227866768\",\r\n            \"fias_level\": \"7\",\r\n            \"flat\": null,\r\n            \"flat_type\": null,\r\n            \"house\": \"8\",\r\n            \"house_fias_id\": \"8dfcd9cc-681c-4f81-8cff-93d20d4e1655\",\r\n            \"house_kladr_id\": \"7800000600001170025\",\r\n            \"house_type\": \"д\",\r\n            \"kladr_id\": \"78000006000011700\",\r\n            \"okato\": \"40290502000\",\r\n            \"postal_code\": \"198412\",\r\n            \"region\": \"Санкт-Петербург\",\r\n            \"region_fias_id\": \"c2deb16a-0330-4f05-821f-1d09c93331e6\",\r\n            \"region_kladr_id\": \"7800000000000\",\r\n            \"region_with_type\": \"г Санкт-Петербург\",\r\n            \"settlement\": null,\r\n            \"settlement_fias_id\": null,\r\n            \"settlement_kladr_id\": null,\r\n            \"settlement_with_type\": null,\r\n            \"street\": \"Швейцарская\",\r\n            \"street_fias_id\": \"2e2b9755-8b98-4446-9b14-f88227866768\",\r\n            \"street_kladr_id\": \"78000006000011700\",\r\n            \"street_with_type\": \"ул Швейцарская\"\r\n        },\r\n        \"is_without_flat\": true\r\n    },\r\n    \"target_of_using\": 11,\r\n    \"valid_from\": \"2024-10-30\",\r\n    \"valid_to\": \"2025-10-29\",\r\n    \"is_car_without_registration\": false,\r\n    \"with_ic_calculation\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v2/agreements/{{agreement_id}}/recalculate",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v2",
+						"agreements",
+						"{{agreement_id}}",
+						"recalculate"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v2/agreements/bd6b73de-999d-4214-89f3-5c199f2831a3/recalculate' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Authorization: Token 026ffb11f98a2f6170e823d590cfb00f3a12e686' \\\r\n  -H 'Cache-Control: no-cache' \\\r\n  -H 'Referer: https://partner.agentapp.ru/' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  --data-raw '{\"has_car_trailer\":false,\"car_type\":\"B\",\"drivers_ids\":[],\"engine_power\":211,\"insurance_period\":8,\"insured_object\":\"a919ebdd-b1bb-4059-8789-453199e60236\",\"owner_registration\":{\"address_query\":\"198412, г Санкт-Петербург, г Ломоносов, ул Швейцарская, д 8 к 2\",\"area\":null,\"area_fias_id\":null,\"area_kladr_id\":null,\"area_with_type\":null,\"block\":\"2\",\"block_type\":\"к\",\"city\":\"Ломоносов\",\"city_district\":null,\"city_district_fias_id\":null,\"city_district_kladr_id\":null,\"city_district_type\":null,\"city_district_type_full\":null,\"city_district_with_type\":null,\"city_fias_id\":\"3c2827f3-63f3-4692-8c74-c1318ee524fd\",\"city_kladr_id\":\"7800000600000\",\"city_with_type\":\"г Ломоносов\",\"country\":\"Россия\",\"fias_code\":\"7800000600000000117\",\"fias_id\":\"2e2b9755-8b98-4446-9b14-f88227866768\",\"fias_level\":\"7\",\"flat\":null,\"flat_type\":null,\"house\":\"8\",\"house_fias_id\":\"8dfcd9cc-681c-4f81-8cff-93d20d4e1655\",\"house_kladr_id\":\"7800000600001170025\",\"house_type\":\"д\",\"kladr_id\":\"78000006000011700\",\"okato\":\"40290502000\",\"postal_code\":\"198412\",\"region\":\"Санкт-Петербург\",\"region_fias_id\":\"c2deb16a-0330-4f05-821f-1d09c93331e6\",\"region_kladr_id\":\"7800000000000\",\"region_with_type\":\"г Санкт-Петербург\",\"settlement\":null,\"settlement_fias_id\":null,\"settlement_kladr_id\":null,\"settlement_with_type\":null,\"street\":\"Швейцарская\",\"street_fias_id\":\"2e2b9755-8b98-4446-9b14-f88227866768\",\"street_kladr_id\":\"78000006000011700\",\"street_with_type\":\"ул Швейцарская\",\"address_type\":\"LEGAL_ADDRESS\",\"data\":{\"address_query\":\"198412, Российская Федерация, г Санкт-Петербург, г Ломоносов, ул Швейцарская, д. 8, к. 2\",\"area\":null,\"area_fias_id\":null,\"area_kladr_id\":null,\"area_with_type\":null,\"block\":\"2\",\"block_type\":\"к\",\"city\":\"Ломоносов\",\"city_district\":null,\"city_district_fias_id\":null,\"city_district_kladr_id\":null,\"city_district_type\":null,\"city_district_type_full\":null,\"city_district_with_type\":null,\"city_fias_id\":\"3c2827f3-63f3-4692-8c74-c1318ee524fd\",\"city_kladr_id\":\"7800000600000\",\"city_with_type\":\"г Ломоносов\",\"country\":\"Россия\",\"fias_code\":\"7800000600000000117\",\"fias_id\":\"2e2b9755-8b98-4446-9b14-f88227866768\",\"fias_level\":\"7\",\"flat\":null,\"flat_type\":null,\"house\":\"8\",\"house_fias_id\":\"8dfcd9cc-681c-4f81-8cff-93d20d4e1655\",\"house_kladr_id\":\"7800000600001170025\",\"house_type\":\"д\",\"kladr_id\":\"78000006000011700\",\"okato\":\"40290502000\",\"postal_code\":\"198412\",\"region\":\"Санкт-Петербург\",\"region_fias_id\":\"c2deb16a-0330-4f05-821f-1d09c93331e6\",\"region_kladr_id\":\"7800000000000\",\"region_with_type\":\"г Санкт-Петербург\",\"settlement\":null,\"settlement_fias_id\":null,\"settlement_kladr_id\":null,\"settlement_with_type\":null,\"street\":\"Швейцарская\",\"street_fias_id\":\"2e2b9755-8b98-4446-9b14-f88227866768\",\"street_kladr_id\":\"78000006000011700\",\"street_with_type\":\"ул Швейцарская\"},\"is_without_flat\":true},\"target_of_using\":11,\"valid_from\":\"2024-10-30\",\"valid_to\":\"2025-10-29\",\"is_car_without_registration\":false,\"with_ic_calculation\":false}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Валидация",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://partner.agentapp.ru/v1/agreements/{{agreement_id}}/validate",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v1",
+						"agreements",
+						"{{agreement_id}}",
+						"validate"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v1/agreements/bd6b73de-999d-4214-89f3-5c199f2831a3/validate' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Authorization: Token 026ffb11f98a2f6170e823d590cfb00f3a12e686' \\\r\n  -H 'Cache-Control: no-cache' \\\r\n  -H 'Referer: https://partner.agentapp.ru/' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Content-Type: application/json'"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение информации по договору ",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://partner.agentapp.ru/v3/agreements/{{agreement_id}}",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v3",
+						"agreements",
+						"{{agreement_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v3/agreements/bd6b73de-999d-4214-89f3-5c199f2831a3' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Authorization: Token 026ffb11f98a2f6170e823d590cfb00f3a12e686' \\\r\n  -H 'Cache-Control: no-cache' \\\r\n  -H 'Referer: https://partner.agentapp.ru/' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Content-Type: application/json'"
+			},
+			"response": []
+		},
+		{
+			"name": "bulk get result",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"pm.environment.set(\"task_id\", jsonData[0].id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"agency_code\": \"TEST_COMPANY_1\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v4/agreements/{{agreement_id}}/results/bulk-get-result",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v4",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"bulk-get-result"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v4/agreements/bd6b73de-999d-4214-89f3-5c199f2831a3/results/bulk-get-result' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Authorization: Token 026ffb11f98a2f6170e823d590cfb00f3a12e686' \\\r\n  -H 'Cache-Control: no-cache' \\\r\n  -H 'Referer: https://partner.agentapp.ru/' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  --data-raw '[{\"agency_code\":\"TEST_COMPANY_1\"}]'"
+			},
+			"response": []
+		},
+		{
+			"name": "bulk chek panding",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"task_ids\": [\r\n        \"{{task_id}}\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v4/agreements/{{agreement_id}}/results/bulk-check",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v4",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"bulk-check"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v4/agreements/bd6b73de-999d-4214-89f3-5c199f2831a3/results/bulk-check' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Authorization: Token 026ffb11f98a2f6170e823d590cfb00f3a12e686' \\\r\n  -H 'Cache-Control: no-cache' \\\r\n  -H 'Referer: https://partner.agentapp.ru/' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  --data-raw '{\"task_ids\":[\"6a9ab5ad-d675-4488-89d9-9fea6a088f42\"]}'"
+			},
+			"response": []
+		},
+		{
+			"name": "bulk chek completed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"console.log(jsonData);\r",
+							"pm.environment.set(\"Chain_id\", jsonData[0].result_parameters.chain_id );"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"task_ids\": [\r\n        \"{{task_id}}\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v4/agreements/{{agreement_id}}/results/bulk-check",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v4",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"bulk-check"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v4/agreements/bd6b73de-999d-4214-89f3-5c199f2831a3/results/bulk-check' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Authorization: Token 026ffb11f98a2f6170e823d590cfb00f3a12e686' \\\r\n  -H 'Cache-Control: no-cache' \\\r\n  -H 'Referer: https://partner.agentapp.ru/' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  --data-raw '{\"task_ids\":[\"6a9ab5ad-d675-4488-89d9-9fea6a088f42\"]}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Buy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 026ffb11f98a2f6170e823d590cfb00f3a12e686"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://partner.agentapp.ru/v4/agreements/{{agreement_id}}/results/TEST_COMPANY_1/buy/{{Chain_id}}",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v4",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"TEST_COMPANY_1",
+						"buy",
+						"{{Chain_id}}"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v4/agreements/bd6b73de-999d-4214-89f3-5c199f2831a3/results/TEST_COMPANY_1/buy/38a128b3-272c-402a-91a0-a53504110de3' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Authorization: Token 026ffb11f98a2f6170e823d590cfb00f3a12e686' \\\r\n  -H 'Cache-Control: no-cache' \\\r\n  -H 'Referer: https://partner.agentapp.ru/' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  --data-raw '{}'"
+			},
+			"response": []
+		},
+		{
+			"name": "оплата",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Referer",
+						"value": "https://partner.agentapp.ru/v3/agreements/bd6b73de-999d-4214-89f3-5c199f2831a3/results/test-payment-page"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					}
+				],
+				"url": {
+					"raw": "https://partner.agentapp.ru/v3/agreements/{{agreement_id}}/results/set-test-payment",
+					"protocol": "https",
+					"host": [
+						"partner",
+						"agentapp",
+						"ru"
+					],
+					"path": [
+						"v3",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"set-test-payment"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://partner.agentapp.ru/v3/agreements/bd6b73de-999d-4214-89f3-5c199f2831a3/results/set-test-payment' \\\r\n  -X 'POST' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'Referer: https://partner.agentapp.ru/v3/agreements/bd6b73de-999d-4214-89f3-5c199f2831a3/results/test-payment-page' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0'"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "Token {{Token}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
